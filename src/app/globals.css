@@ -10,6 +10,10 @@
   font-family: var(--font-heading);
 }
 
+.font-text {
+  font-family: "Kalnia", serif;
+}
+
 .overly {
   position: fixed;
   top: 0;
@@ -69,6 +73,7 @@
   text-decoration: none;
   position: relative;
   transition: color 0.3s ease;
+  font-family: "Jost", sans-serif, Arial, Helvetica, sans-serif;
 }
 
 .header .nav_link:hover {
@@ -134,14 +139,9 @@
   width: 145%;
 }
 
-.abc {
-  color: red;
-}
-
-
 /* <<========== Home Page =========>> */
 
-.banner-section {
+.home-page .banner-section {
   width: 100%;
   height: 600px;
   background-image: url(../../public/images/Banner/Banner.jpg);
@@ -149,7 +149,7 @@
   background-repeat: no-repeat;
 }
 
-.banner-section .banner-button {
+.home-page .banner-section .banner-button {
   width: 150px;
   position: relative;
   background-color: white;
@@ -164,7 +164,7 @@
   transform: rotate(90deg);
 }
 
-.banner-section .banner-button::after {
+.home-page .banner-section .banner-button::after {
   content: "";
   position: absolute;
   left: 0;
@@ -179,14 +179,29 @@
   border-radius: inherit;
 }
 
-.banner-section .banner-button:hover::after {
+.home-page .banner-section .banner-button:hover::after {
   transform: scaleY(1);
 }
 
-.banner-section .banner-button:hover {
+.home-page .banner-section .banner-button:hover {
   color: #fff;
 }
 
+.home-page .img-section {
+  position: relative;
+}
+
+.home-page .img-section .image-1 {
+  position: absolute;
+  left: 100px;
+  bottom: 20px;
+}
+
+.home-page .img-section .image-3 {
+  position: absolute;
+  right: 100px; 
+  top: 20px;
+}
 
 /* <<========== Responsive =========>> */
 @media (max-width: 768px) {
