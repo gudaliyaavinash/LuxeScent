@@ -1,26 +1,196 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-heading: 'Playfair Display', serif;
+  --textcolor: #00BCD4;
+  --bggradient: linear-gradient(90deg, #00BCD4 45%, #00E5FF 100%);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.font-heading {
+  font-family: var(--font-heading);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.overly {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 888;
+}
+
+/* <<========== Header Page =========>> */
+
+.header {
+  width: 100%;
+  padding: 5px 0;
+  background-color: transparent;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 8888;
+  margin-bottom: -75px;
+  position: relative;
+}
+
+.header.scrolled {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: headerScroll 0.5s ease-in-out;
+}
+
+@keyframes headerScroll {
+  from {
+    transform: translateY(-60px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.header .logo_text h1 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--textcolor);
+}
+
+.header .nav_link {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #000;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.header .nav_link:hover {
+  color: var(--textcolor);
+}
+
+.header .nav_link::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: -6px;
+  width: 100%;
+  height: 3px;
+  background: var(--textcolor);
+  transform: scaleX(0);
+  transform-origin: right center;
+  border-radius: 5px;
+  transition: 0.5s;
+}
+
+.header .nav_link:hover::after {
+  transform-origin: left center;
+  transform: scaleX(1);
+}
+
+.button {
+  height: 35px;
+  padding: 0px 25px;
+  padding-bottom: 3px;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--textcolor);
+  transition: all 1000ms;
+  position: relative;
+  overflow: hidden;
+  outline: 2px solid var(--textcolor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header .button:hover {
+  color: white;
+  transform: scale(1);
+}
+
+.header .button::before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background: var(--bggradient);
+  transform: skewX(45deg);
+  z-index: -1;
+  transition: width 0.5s;
+}
+
+.header .button:hover::before {
+  width: 145%;
+}
+
+.abc {
+  color: red;
+}
+
+
+/* <<========== Home Page =========>> */
+
+.banner-section {
+  width: 100%;
+  height: 600px;
+  background-image: url(../../public/images/Banner/Banner.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.banner-section .banner-button {
+  width: 150px;
+  position: relative;
+  background-color: white;
+  border: none;
+  padding: 10px 0px;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--textcolor);
+  text-transform: uppercase;
+  overflow: hidden;
+  z-index: 1;
+  transform: rotate(90deg);
+}
+
+.banner-section .banner-button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+  border-radius: inherit;
+}
+
+.banner-section .banner-button:hover::after {
+  transform: scaleY(1);
+}
+
+.banner-section .banner-button:hover {
+  color: #fff;
+}
+
+
+/* <<========== Responsive =========>> */
+@media (max-width: 768px) {
+  .banner-section {
+    height: 500px;
+  }
 }
