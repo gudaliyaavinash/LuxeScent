@@ -36,7 +36,7 @@ export default function Header() {
   return (
     <header className={`header ${isScrolled ? "scrolled" : ""}`}>
 
-      <div className="mx-auto px-4 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
 
         <div className="flex items-center gap-2">
           <button onClick={() => toggleModel("Open")} className="block md:hidden">
