@@ -139,7 +139,6 @@ const Banner = () => {
 
             </div>
 
-
         </div>
     )
 }
