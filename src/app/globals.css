@@ -268,6 +268,81 @@
   color: var(--textcolor);
 }
 
+/* <<========== Loading Page =========>> */
+
+.lux-loader {
+  position: fixed;
+  inset: 0;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 9999;
+  font-family: "Playfair Display", serif;
+}
+
+.logo {
+  font-size: 3.2rem;
+  letter-spacing: 3px;
+  color: var(--textcolor);
+  z-index: 2;
+}
+
+.logo span:first-child {
+  font-weight: 600;
+}
+
+.logo span:last-child {
+  font-weight: 300;
+  margin-left: 6px;
+}
+
+.loading-text {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  color: var(--textcolor);
+}
+
+/* Spray Lines */
+.spray {
+  position: absolute;
+  width: 2px;
+  height: 120px;
+  background: linear-gradient(to top, transparent, var(--textcolor), transparent);
+  animation: sprayMove 2.2s infinite ease-in-out;
+  opacity: 0;
+}
+
+.spray.left {
+  left: 45%;
+  animation-delay: 0s;
+}
+
+.spray.right {
+  right: 45%;
+  animation-delay: 1.1s;
+}
+
+@keyframes sprayMove {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-60px);
+    opacity: 0;
+  }
+}
+
 
 /* <<========== Responsive =========>> */
 

@@ -1,12 +1,34 @@
+'use client'
+
 import Image from "next/image";
 import Banner from "./Component/Banner";
+import { categories, features } from "./StaticData";
 import ProductImg2 from "../../public/images/Product1-img2.jpg";
 import ProductImg3 from "../../public/images/Product1-img3.jpg";
 import ProductImg4 from "../../public/images/Product2-img2.jpg";
 import ProductImg5 from "../../public/images/Product2-img1.jpg";
-import { categories, features } from "./StaticData";
 import ProductImg from "../../public/images/Product/Product-1.jpg";
+import WomenBanner from "../../public/images/female-banner.webp";
+import menBanner from "../../public/images/male-banner.webp";
+import { motion } from "framer-motion";
+import React from "react";
+import { Loading } from "./Component/Loading";
 export default function Home() {
+
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const Time = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(Time);
+  }, [])
+
+  if (loading) {
+    return <Loading />
+  }
+
   return (
     <div className="home-page">
 
@@ -15,12 +37,46 @@ export default function Home() {
 
       {/* Category Section */}
       <section className="max-w-7xl mx-auto py-[20px] md:py-[30px]">
+
         <div className="text-center leading-14">
-          <span className="text-[45px] text-[#00BCD4] font-[Quentin]">Category</span> <br />
-          <span className="text-[45px] uppercase text-gray-700">Fragrance Types</span>
-          <p className="text-[17px] text-gray-500 -mt-3">The stylish and organized cosmetic products</p>
+          <motion.p
+            variants={{
+              closed: { opacity: 0, y: 30 },
+              open: { opacity: 1, y: 0 },
+            }}
+            initial="closed"
+            whileInView="open"
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-[32px] md:text-[45px] text-[#00BCD4] font-[Quentin]"
+          >
+            Category
+          </motion.p>
+
+          <motion.div
+            variants={{
+              closed: { opacity: 0, y: 30 },
+              open: { opacity: 1, y: 0 },
+            }}
+            initial="closed"
+            whileInView="open"
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}>
+            <span className="text-[45px] uppercase text-gray-700">Fragrance Types</span>
+            <p className="text-[17px] text-gray-500 -mt-3">The stylish and organized cosmetic products</p>
+          </motion.div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 py-7">
+
+        <motion.div
+          variants={{
+            closed: { opacity: 0, y: 30 },
+            open: { opacity: 1, y: 0 },
+          }}
+          initial="closed"
+          whileInView="open"
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 1.2 }}
+          className="grid grid-cols-1 md:grid-cols-4 gap-4 py-7">
           {categories.map((item, index) => {
             const Style = index === 0 ? "w-[100px] h-[100px]" : index === 1 ? "w-[140px] h-[100px]" : index === 2 ? "w-[113px] h-[100px]" : "w-[86px] h-[100px]";
             return <div key={index} className="text-center">
@@ -31,12 +87,62 @@ export default function Home() {
               </div>
             </div>
           })}
-        </div>
+        </motion.div>
+
+      </section>
+
+      {/* Category Banner */}
+      <section className="max-w-7xl h-[500px] mx-auto py-[20px] md:py-[30px] grid grid-cols-2">
+
+        <motion.div
+          variants={{
+            closed: { opacity: 0, y: -100 },
+            open: { opacity: 1, y: 0 },
+          }}
+          initial="closed"
+          whileInView="open"
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
+          className="relative group overflow-hidden">
+          <Image src={WomenBanner} alt="Women Perfumes" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+          <div className="absolute inset-0 bg-[#00bbd429] opacity-0 group-hover:opacity-100 transition duration-500"></div>
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[260px] p-6 text-center bg-[#00bbd45a]">
+            <h1 className="text-white text-3xl font-bold leading-tight mb-8">
+              Women <br /> Perfumes
+            </h1>
+            <span className="inline-block text-white font-semibold uppercase text-sm tracking-wider border-b border-white pb-1 cursor-pointer hover:opacity-80">
+              Explore
+            </span>
+          </div>
+        </motion.div>
+
+        <motion.div
+          variants={{
+            closed: { opacity: 0, y: -100 },
+            open: { opacity: 1, y: 0 },
+          }}
+          initial="closed"
+          whileInView="open"
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
+          className="relative group overflow-hidden">
+          <Image src={menBanner} alt="Men Perfumes" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+          <div className="absolute inset-0 bg-[#00bbd429] opacity-0 group-hover:opacity-100 transition duration-500"></div>
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[260px] p-6 text-center bg-[#00bbd45a]">
+            <h1 className="text-white text-3xl font-bold leading-tight mb-8">
+              Men <br /> Perfumes
+            </h1>
+            <span className="inline-block text-white font-semibold uppercase text-sm tracking-wider border-b border-white pb-1 cursor-pointer hover:opacity-80">
+              Explore
+            </span>
+          </div>
+        </motion.div>
+
       </section>
 
       {/* Product 1 Section */}
       <section className="bg-[#00cce70a]">
-        <div className="max-w-7xl mx-auto py-[20px] grid grid-cols-1 lg:grid-cols-12 items-satrt">
+        <div className="max-w-7xl mx-auto py-[20px] grid grid-cols-1 lg:grid-cols-12 items-satrt overflow-hidden">
           {/* Left Box */}
           <div className="h-[500px] max-[425px]:h-[300px] lg:col-span-6 flex items-center justify-center">
             <div className="img-section">
@@ -52,7 +158,16 @@ export default function Home() {
           </div>
 
           {/* Right Box */}
-          <div className="lg:col-span-5 px-[20px] lg:px-0 py-3 md:py-6">
+          <motion.div
+            variants={{
+              closed: { opacity: 0, x: 200 },
+              open: { opacity: 1, x: 0 }
+            }}
+            initial="closed"
+            whileInView="open"
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
+            className="lg:col-span-5 px-[20px] lg:px-0 py-3 md:py-6">
             <span className="text-pink-600 text-sm font-bold tracking-[0.3em] uppercase">Our Original Perfume</span>
             <p className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.9] text-[#181113] mt-4">
               Pink <br /> <span className="italic text-pink-500">Emotions</span>
@@ -69,21 +184,57 @@ export default function Home() {
               </button>
             </div>
 
-          </div>
+          </motion.div>
+
         </div>
       </section>
 
       {/* Best products Section */}
       <section>
         <div className="max-w-7xl mx-auto py-[20px] md:py-[50px]">
+
           <div className="text-center leading-14">
-            <span className="text-[45px] text-[#00BCD4] font-[Quentin]">Best Sellers</span> <br />
-            <span className="text-[45px] uppercase text-gray-700">Best Sellers Products</span>
-            <p className="text-[17px] text-gray-500 -mt-3">The stylish and organized cosmetic products</p>
+            <motion.p
+              variants={{
+                closed: { opacity: 0, y: 30 },
+                open: { opacity: 1, y: 0 },
+              }}
+              initial="closed"
+              whileInView="open"
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="text-[45px] text-[#00BCD4] font-[Quentin]">Best Sellers
+            </motion.p>
+
+            <motion.div
+              variants={{
+                closed: { opacity: 0, y: 30 },
+                open: { opacity: 1, y: 0 },
+              }}
+              initial="closed"
+              whileInView="open"
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}>
+              <span className="text-[45px] uppercase text-gray-700">Best Sellers Products</span>
+              <p className="text-[17px] text-gray-500 -mt-3">The stylish and organized cosmetic products</p>
+            </motion.div>
+
           </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-7">
             {Array.from({ length: 8 }).map((_, index) => {
-              return <div key={index} className="cursor-pointer">
+              ``
+              return <motion.div
+                key={index}
+                variants={{
+                  closed: { opacity: 0, y: 30 },
+                  open: { opacity: 1, y: 0 },
+                }}
+                initial="closed"
+                whileInView="open"
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
+                className="cursor-pointer">
                 <div className="relative w-full h-[320px] overflow-hidden relative group">
                   <Image src={ProductImg} alt={`Best Product ${index + 1}`} className="object-cover" fill />
                   <div className="absolute -top-8 -right-8 group-hover:top-3 group-hover:right-3 duration-300">
@@ -115,7 +266,7 @@ export default function Home() {
                     <span className="text-gray-400 text-[16px] font-medium line-through decoration-text-muted/30">$120.00</span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             })}
           </div>
         </div>
@@ -123,10 +274,19 @@ export default function Home() {
 
       {/* Product 2 Section */}
       <section className="bg-[#00cce70a]">
-        <div className="max-w-7xl mx-auto py-[20px] grid grid-cols-1 lg:grid-cols-12 items-satrt">
+        <div className="max-w-7xl mx-auto py-[20px] grid grid-cols-1 lg:grid-cols-12 items-satrt overflow-hidden">
 
           {/* Left Box */}
-          <div className="lg:col-span-5 px-[20px] lg:px-0 py-3 md:py-6">
+          <motion.div
+            variants={{
+              closed: { opacity: 0, x: -200 },
+              open: { opacity: 1, x: 0 }
+            }}
+            initial="closed"
+            whileInView="open"
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
+            className="lg:col-span-5 px-[20px] lg:px-0 py-3 md:py-6">
             <span className="text-orange-600 text-sm font-bold tracking-[0.3em] uppercase">Our Original Perfume</span>
             <p className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.9] text-[#181113] mt-4">
               Eternity <br /> <span className="italic text-orange-500">by Belle</span>
@@ -143,7 +303,7 @@ export default function Home() {
               </button>
             </div>
 
-          </div>
+          </motion.div>
 
           {/* Right Box */}
           <div className="h-[500px] max-[425px]:h-[300px] lg:col-span-6 flex items-center justify-center">
@@ -165,13 +325,22 @@ export default function Home() {
 
       {/* Features Section */}
       <section className="py-20 px-6 lg:px-20">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 overflow-hidden">
 
-          {features.map((item, index) => (
-            <div
+          {features.map((item, index) => {
+            const XDuration = index < 2 ? -200 : 200;
+            return <motion.div
+              variants={{
+                closed: { opacity: 0, x: XDuration },
+                open: { opacity: 1, x: 0 }
+              }}
+              initial="closed"
+              whileInView="open"
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
               key={index}
               className="shadow rounded-2xl p-10 text-center border border-gray-200
-            hover:border-[#00BCD4] transition duration-300"
+            hover:border-[#00BCD4]"
             >
               <div className="text-[#00BCD4] text-4xl flex justify-center mb-6">
                 {item.icon}
@@ -184,8 +353,8 @@ export default function Home() {
               <p className="text-gray-500 text-sm leading-relaxed">
                 {item.desc}
               </p>
-            </div>
-          ))}
+            </motion.div>
+          })}
 
         </div>
       </section>

@@ -62,7 +62,7 @@ export default function Header() {
 
         <div className="hidden md:block">
           <div className="flex items-center gap-8">
-            {["Home", "Shop", "About", "Contact"].map((item, index) => (
+            {["Men", "Women", "Exclusive", "About"].map((item, index) => (
               <Link href={"#"} key={index} className="nav_link">{item}</Link>
             ))}
           </div>
@@ -106,7 +106,7 @@ export default function Header() {
           </div>
 
           <div className="px-5">
-            {["Home", "Shop", "About", "Contact"].map((item, index) => {
+            {["Men", "Women", "Exclusive", "About"].map((item, index) => {
               return <div key={index} className="py-2 flex items-center justify-between">
                 <Link href={"#"}>{item}</Link>
                 <svg

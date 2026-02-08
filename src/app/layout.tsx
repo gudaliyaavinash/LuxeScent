@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "./Component/Header";
 import Footer from "./Footer";
-
 export const metadata: Metadata = {
   title: "LuxeScent",
   description: "Generated LuxeScent Company Website",
